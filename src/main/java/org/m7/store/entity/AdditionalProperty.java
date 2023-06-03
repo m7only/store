@@ -1,18 +1,17 @@
 package org.m7.store.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
-
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
+@ToString
 @Entity
+@EqualsAndHashCode
+@Table(name = "additional_properties")
 public class AdditionalProperty {
 
     @Id
@@ -22,6 +21,7 @@ public class AdditionalProperty {
     @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "additionalProperty")
-    private Set<Product> products;
+    public AdditionalProperty(String title) {
+        this.title = title;
+    }
 }
